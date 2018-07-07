@@ -5,10 +5,13 @@ connection = Bunny.new
 connection.start
 
 channel = connection.create_channel
-queue = channel.queue('hello')
+queue = channel.queue('task_queue', durable: true)
+
+channel.prefetch(1)
+puts ' [*] Waiting for messages. To exit press CTRL+C'
 
 begin
-  puts ' [*] Waiting for messages. To exit press CTRL+C'
+
   queue.subscribe(block: true) do |_delivery_info, _properties, body|
     puts " [x] Received #{body}"
     # imitate some work
@@ -17,6 +20,4 @@ begin
   end
 rescue Interrupt => _
   connection.close
-
-  exit(0)
 end

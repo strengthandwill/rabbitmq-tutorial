@@ -8,15 +8,20 @@ Bash completion has been installed to:
 /usr/local/etc/bash_completion.d
 ```  
 
-To have launchd start rabbitmq now and restart at login:
+To have launchd start rabbitmq:
 ```
 brew services start rabbitmq
 ```
-  
-Or, if you don't want/need a background service you can just run:
+
+To have launchd stop rabbitmq:
 ```
-rabbitmq-server  
+brew services stop rabbitmq
 ```
+
+To have launchd restart rabbitmq:
+```
+brew services restart rabbitmq
+```  
 
 ## Running app
 Now we can run both scripts. In a terminal, run the consumer (receiver):
@@ -27,4 +32,4 @@ ruby receive.rb
 then, run the publisher (sender):
 ```
 ruby send.rb
-```  
+```
