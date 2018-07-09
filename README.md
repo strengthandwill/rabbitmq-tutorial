@@ -21,6 +21,11 @@ brew services stop rabbitmq
 To have launchd restart rabbitmq:
 ```
 brew services restart rabbitmq
+```
+
+To list existing bindings:
+```
+rabbitmqctl list_bindings
 ```  
 
 ## Running app
